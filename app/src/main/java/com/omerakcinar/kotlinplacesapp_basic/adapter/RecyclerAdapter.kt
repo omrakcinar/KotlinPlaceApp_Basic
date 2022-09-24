@@ -23,7 +23,6 @@ class RecyclerAdapter(val placeList : List<Place>) : RecyclerView.Adapter<Recycl
         holder.recyclerRowBinding.placeNameRowText.text = placeList[position].placeName
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context,MapsActivity::class.java)
-            intent.putExtra("value","here")
             holder.itemView.context.startActivity(intent)
         }
     }

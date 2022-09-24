@@ -29,6 +29,7 @@ import com.omerakcinar.kotlinplacesapp_basic.roomdb.PlaceDb
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.lang.Exception
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
 
@@ -54,7 +55,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLon
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
         registerLauncher()
-        db = Room.databaseBuilder(applicationContext,PlaceDb::class.java,"PlaceDb").build()
+        db = Room.databaseBuilder(applicationContext,PlaceDb::class.java,"Place").build()
         placeDao = db.placeDao()
     }
 
@@ -116,15 +117,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLon
     }
 
     fun savePlace(view: View){
-        val placeName = binding.placeNameText.text.toString()
-        val latitude = selectedLatitude
-        val longitude = selectedLongitude
-        val placeToSave = Place(placeName,latitude,longitude)
+        //val placeName = binding.placeNameText.text.toString()
+        //val latitude = selectedLatitude
+        //val longitude = selectedLongitude
+        //val placeToSave = Place(placeName,latitude,longitude)
+        try {
+            val place = Place(binding.placeNameText.text.toString(),selectedLatitude,selectedLongitude)
+            println(place)
 
-        compositeDisposable.add(placeDao.insert(placeToSave)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(this::handleResponse))
+            compositeDisposable.add(placeDao.insert(place)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::handleResponse))
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
+
     }
 
     fun handleResponse(){

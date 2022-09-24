@@ -10,12 +10,9 @@ import io.reactivex.rxjava3.core.Flowable
 
 @Dao
 interface PlaceDao {
-    @Query("SELECT * FROM Place")
-    fun getAllData(): Flowable<List<Place>>
+    @Query("SELECT * FROM Place") fun getAll() : Flowable<List<Place>>
 
-    @Insert
-    fun insert(place: Place) : Completable
+    @Insert fun insert(place : Place) : Completable
 
-    @Delete
-    fun delete(place: Place): Completable
+    @Delete fun delete(place : Place) : Completable
 }

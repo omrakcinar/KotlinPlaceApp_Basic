@@ -25,10 +25,10 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val db = Room.databaseBuilder(applicationContext,PlaceDb::class.java,"Places").build()
+        val db = Room.databaseBuilder(applicationContext,PlaceDb::class.java,"Place").build()
         val placeDao = db.placeDao()
 
-        compositeDisposable.add(placeDao.getAllData()
+        compositeDisposable.add(placeDao.getAll()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(this::handleResponse))
