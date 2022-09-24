@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudio/KotlinPlacesApp_Basic/app/src/main/res/drawable/bg.xml" value="0.2545" />
         <entry key="..\:/AndroidStudio/KotlinPlacesApp_Basic/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/AndroidStudio/KotlinPlacesApp_Basic/app/src/main/res/layout/activity_maps.xml" value="0.25" />
         <entry key="..\:/AndroidStudio/KotlinPlacesApp_Basic/app/src/main/res/layout/recycler_row.xml" value="0.25" />
