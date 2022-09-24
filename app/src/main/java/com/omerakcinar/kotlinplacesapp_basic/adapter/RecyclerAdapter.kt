@@ -23,10 +23,11 @@ class RecyclerAdapter(val placeList : List<Place>) : RecyclerView.Adapter<Recycl
         holder.recyclerRowBinding.placeNameRowText.text = placeList[position].placeName
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context,MapsActivity::class.java)
+            intent.putExtra("selectedPlace",placeList.get(position))
+            intent.putExtra("info","old")
             holder.itemView.context.startActivity(intent)
         }
     }
-
     override fun getItemCount(): Int {
         return placeList.size
     }
